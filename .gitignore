@@ -24,3 +24,4 @@ go.work
 
 build
 out
+/main_test.go
