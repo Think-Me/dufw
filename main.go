@@ -14,7 +14,7 @@ import (
 
 var domain = flag.String("d", "eber.vip", "Domain(eg: eber.vip)")
 
-var every = flag.Int("t", 300, "Interval time/second(eg: 300)")
+var every = flag.Int("t", 10, "Interval time/second(eg: 300)")
 
 var command = flag.String("s", "", "Service management, support install, uninstall, restart")
 
