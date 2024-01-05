@@ -12,9 +12,9 @@ import (
 	"time"
 )
 
-var domain = flag.String("d", "eber.vip", "Domain(eg: eber.vip)")
+var domain = flag.String("d", "sh.d.silversea.eu.org", "Domain(eg: eber.vip)")
 
-var every = flag.Int("t", 10, "Interval time/second(eg: 300)")
+var every = flag.Int("t", 300, "Interval time/second(eg: 300)")
 
 var command = flag.String("s", "", "Service management, support install, uninstall, restart")
 
@@ -60,6 +60,11 @@ func run() {
 }
 
 func RunOnce() {
+	c := exec.Command("systemd-resolve", "--flush-caches")
+	_, err := c.CombinedOutput()
+	if err != nil {
+		fmt.Println("清除DNS缓存失败:", err)
+	}
 	addr, err := net.ResolveIPAddr("ip4", *domain)
 	if err != nil {
 		log.Println("Domain name resolution failed:", err)
